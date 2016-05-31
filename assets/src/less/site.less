@@ -1,0 +1,92 @@
+// Web
+//
+html,
+body {
+  .square(100%);
+  }
+
+body {
+  background: @cl-white;
+  font-size: @baseFontSize;
+  line-height: @baseLineHeight;
+  #font > #family > .sans-serif();
+  color: @textColor;
+  font-weight: 400;
+}
+
+.d-wrap {
+  max-width: 300px;
+  position: relative;
+  margin: 20px auto;
+}
+
+.d-card {
+  width: 300px;
+  display: table;
+  border: 1px solid @cl-selago;
+  .border-radius;
+}
+
+.d-card-line {
+  display: table-row;
+
+  > * {
+    padding: 10px 15px;
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  &:first-child {
+    border-top: none;
+  }
+
+  &:nth-child(even) {
+    background-color: @cl-selago-light;
+  }
+}
+
+.d-card-price {
+  font-weight: 700;
+}
+
+.d-card-lineChart {
+  border-right: 1px solid @cl-selago;
+}
+
+.d-card-percentage {
+  font-weight: 700;
+  text-align: center;
+}
+
+.s-microchart {
+  display: block;
+
+  .s-animatable {
+    stroke-dashoffset: 0;
+    .transSlow;
+  }
+
+  &.s-animate {
+    .s-animatable {
+      stroke-dasharray: 0 1000;
+    }
+  }
+}
+
+.s-microchart--pie,
+.s-microchart--donut {
+  border-radius: 50%;
+  .rotate(-90deg);
+}
+
+.s-microchart--line {
+  &.s-animate {
+    .s-animatable {
+      stroke-dashoffset: 100;
+    }
+  }
+
+  .s-animatable {
+    stroke-dashoffset: 0;
+  }
+}
