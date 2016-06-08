@@ -8,7 +8,9 @@ Object.prototype.extend = (obj) ->
 
 Microchart = React.createFactory React.createClass (`/** @lends {React.ReactComponent.prototype} */`)
   propTypes:
-    'name': React.PropTypes.string
+    'name': React.PropTypes.string.isRequired
+    'baseClassName': React.PropTypes.string
+    'customClassNames': React.PropTypes.array
     'animate': React.PropTypes.bool
     'animationDelay': React.PropTypes.number
 
@@ -41,14 +43,18 @@ Microchart = React.createFactory React.createClass (`/** @lends {React.ReactComp
   getDefaultProps: ->
     'baseClassName': 's-microchart'
     'customClassNames': null
+    'name': null
     'animate': no
     'animationDelay': 50
 
 MicrochartPie = React.createFactory React.createClass (`/** @lends {React.ReactComponent.prototype} */`)
   propTypes:
-    'name': React.PropTypes.string
+    'name': React.PropTypes.string.isRequired
+    'baseClassName': React.PropTypes.string
+    'customClassNames': React.PropTypes.array
     'width': React.PropTypes.number
     'emptyColor': React.PropTypes.string
+    'color': React.PropTypes.string
     'stroke': React.PropTypes.number
     'animate': React.PropTypes.bool
 
@@ -90,13 +96,17 @@ MicrochartPie = React.createFactory React.createClass (`/** @lends {React.ReactC
     'customClassNames': ['s-microchart--pie']
     'width': 24
     'emptyColor': '#f5f5f5'
+    'color': '#5394DF'
     'animate': no
 
 MicrochartDonut = React.createFactory React.createClass (`/** @lends {React.ReactComponent.prototype} */`)
   propTypes:
-    'name': React.PropTypes.string
+    'name': React.PropTypes.string.isRequired
+    'baseClassName': React.PropTypes.string
+    'customClassNames': React.PropTypes.array
     'width': React.PropTypes.number
     'emptyColor': React.PropTypes.string
+    'color': React.PropTypes.string
     'stroke': React.PropTypes.number
     'animate': React.PropTypes.bool
 
@@ -147,11 +157,14 @@ MicrochartDonut = React.createFactory React.createClass (`/** @lends {React.Reac
     'customClassNames': ['s-microchart--donut']
     'width': 24
     'emptyColor': '#f5f5f5'
+    'color': '#5394DF'
     'animate': no
 
 MicrochartLine = React.createFactory React.createClass (`/** @lends {React.ReactComponent.prototype} */`)
   propTypes:
-    'name': React.PropTypes.string
+    'name': React.PropTypes.string.isRequired
+    'baseClassName': React.PropTypes.string
+    'customClassNames': React.PropTypes.array
     'width': React.PropTypes.number
     'height': React.PropTypes.number
     'emptyColor': React.PropTypes.string
@@ -174,10 +187,7 @@ MicrochartLine = React.createFactory React.createClass (`/** @lends {React.React
     Microchart props, @renderChart()
 
   renderChart: ->
-    items = []
-    for item, i in @props['series']
-      items.push @getLinechartItem item, i
-    React.DOM.g {}, items
+    React.DOM.g {}, @props['series'].map @getLinechartItem
 
   getLinechartItem: (item, index) ->
     # Calculating line positions
